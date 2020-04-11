@@ -1,31 +1,29 @@
 <?php
-// 1 Initialiser CURL
-$ch = curl_init();
 
-// 2 Options :  
-// URL to send in request => GET ALL CHARACTERS
-curl_setopt($ch, CURLOPT_URL, "https://dragon-ball-api.herokuapp.com/api/character/");
-
-// Set the content type to application/json
-curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
-
-// Return instead of outputting directly
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-// Wether to include the header in the output. Set to false here
-curl_setopt($ch, CURLOPT_HEADER, 0);
-
-// 3 Execute request and fetch the response / check for error
-$results = json_decode(curl_exec($ch));
-if ($results === false) {
-    echo curl_error($ch);
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $userName = $_POST['name'];
+    $curl = curl_init();
+    curl_setopt_array($curl, array(
+        CURLOPT_URL => "https://gramotool7.p.rapidapi.com/avatar/?username=$userName",
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "GET",
+        CURLOPT_HTTPHEADER => array(
+            "x-rapidapi-host: gramotool7.p.rapidapi.com",
+            "x-rapidapi-key: 3038c2322amshbd28049ff1cb4b3p14dc77jsn0dd7720e19e9"
+        ),
+    ));
+    $response = json_decode(curl_exec($curl));
+    $err = curl_error($curl);
+    curl_close($curl);
+    if ($err) {
+        echo "cURL Error #:" . $err;
+    }
 }
-
-// 4 Close free up the curl handle
-curl_close($ch);
-
-// 5 Display result
-//print_r($results);
 ?>
 
 <!DOCTYPE html>
@@ -41,26 +39,24 @@ curl_close($ch);
 
 <body>
     <div class="container my-5">
-        <div class="jumbotron">
-            <h1>Hello bro, <br> here we try different API from RAPID API :</h1>
-            <hr class="my-5">
-            <div class="my-4">
-                <h3>To try different API just go on different branch of project</h3>
-                <div class="my-3">
-                    To use project : 
-                    <ul class="my-3">
-                        <li class="my-2">Clone Project</li>
-                        <li class="my-2">Launch php -S localhost:8000</li>
-                    </ul>
-                </div>
+        <form method="POST">
+            <div class="form-group">
+                <label for="name">Instagram username : </label>
+                <input type="text" class="form-control" id="name" name="name">
             </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <div class="text-center">
+            <?php if (isset($response) && $response != false){
+            ?>
+                <img src="<?= $response->current_profile_picture ?> " alt="picture">
+            <?php
+            }?>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
+
 </html>
-
-
-    
