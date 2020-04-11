@@ -2,7 +2,7 @@
 - API DOC : https://dragon-ball-api.herokuapp.com/documentation
 
 
-To use project : 
+### To use project : 
 - Clone Project
 - Launch php -S localhost:8000
 
