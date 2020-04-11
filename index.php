@@ -40,22 +40,20 @@ curl_close($ch);
 </head>
 
 <body>
-    <div class="container">
-        <div class="row">
-            <?php for ($i = 0; $i < count($results); $i++) { ?>
-                <div class="col-4">
-                    <div class="card my-4" style="width: 18rem;">
-                        <img src="<?= $results[$i]->image ?>" class="card-img-top" alt="..." style="width : 286px; height: 200px;">
-                        <div class="card-body">
-                            <h4 class="card-title"><?= $results[$i]->species ?></h4>
-                            <p class="card-text">Origin : <?= $results[$i]->originPlanet ?></p>
-                            <p class="card-text">Status : <?= $results[$i]->status ?></p>
-                            <p class="card-text">Species : <?= $results[$i]->species ?></p>
-                            <p class="card-text">Series : <?= $results[$i]->series ?></p>
-                        </div>
-                    </div>
+    <div class="container my-5">
+        <div class="jumbotron">
+            <h1>Hello bro, <br> here we try different API from RAPID API :</h1>
+            <hr class="my-5">
+            <div class="my-4">
+                <h3>To try different API just go on different branch of project</h3>
+                <div class="my-3">
+                    To use project : 
+                    <ul class="my-3">
+                        <li class="my-2">Clone Project</li>
+                        <li class="my-2">Launch php -S localhost:8000</li>
+                    </ul>
                 </div>
-            <?php } ?>
+            </div>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
