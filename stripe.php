@@ -17,7 +17,7 @@ if(!empty($_POST['name']) && !empty($_POST['email']) && !empty($_POST['stripeTok
         // CHARGE
         $charge = \Stripe\Charge::create([
             'amount' => $_POST['amount'],
-            'currency' => 'usd',
+            'currency' => 'eur',
             'description' => 'Example charge',
             'customer' => $customer->id,
             'statement_descriptor' => 'Custom descriptor',
