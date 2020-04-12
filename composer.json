@@ -1,0 +1,10 @@
+{
+    "name": "jenny/test",
+    "authors": [
+        {
+            "name": "JennyViannay",
+            "email": "jenny.viannay75@gmail.com"
+        }
+    ],
+    "require": {}
+}
