@@ -1,31 +1,5 @@
 <?php
-// 1 Initialiser CURL
-$ch = curl_init();
 
-// 2 Options :  
-// URL to send in request => GET ALL CHARACTERS
-curl_setopt($ch, CURLOPT_URL, "https://dragon-ball-api.herokuapp.com/api/character/");
-
-// Set the content type to application/json
-curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
-
-// Return instead of outputting directly
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-// Wether to include the header in the output. Set to false here
-curl_setopt($ch, CURLOPT_HEADER, 0);
-
-// 3 Execute request and fetch the response / check for error
-$results = json_decode(curl_exec($ch));
-if ($results === false) {
-    echo curl_error($ch);
-}
-
-// 4 Close free up the curl handle
-curl_close($ch);
-
-// 5 Display result
-//print_r($results);
 ?>
 
 <!DOCTYPE html>
@@ -35,7 +9,7 @@ curl_close($ch);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>DRAGON BALL API</title>
+    <title>TEST API</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
